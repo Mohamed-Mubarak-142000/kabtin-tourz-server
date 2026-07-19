@@ -18,7 +18,10 @@ const env = {
   CLOUDINARY_CLOUD_NAME: required('CLOUDINARY_CLOUD_NAME', ''),
   CLOUDINARY_API_KEY: required('CLOUDINARY_API_KEY', ''),
   CLOUDINARY_API_SECRET: required('CLOUDINARY_API_SECRET', ''),
-  CORS_ORIGINS: required('CORS_ORIGINS', 'http://localhost:3000,http://localhost:5173')
+  CORS_ORIGINS: required(
+    'CORS_ORIGINS',
+    'http://localhost:3000,http://localhost:5173,http://localhost:5174,https://kabtin-tourz-client.vercel.app,https://kabtin-tourz-dashboard.vercel.app'
+  )
     .split(',')
     .map((s) => s.trim())
     .filter(Boolean),
