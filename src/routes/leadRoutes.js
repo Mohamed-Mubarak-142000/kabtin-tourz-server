@@ -21,6 +21,7 @@ const router = express.Router();
 router.post('/', leadsLimiter, optionalAuth, validate(createLeadSchema), leadController.createLead);
 router.post('/payment-proof', leadsLimiter, proofUpload.array('images', 1), uploadController.uploadImages);
 router.get('/', requireAuth, leadController.getLeads);
+router.get('/:id', requireAuth, leadController.getLeadById);
 router.patch('/:id', requireAuth, validate(updateLeadSchema), leadController.updateLead);
 router.delete('/:id', requireAuth, leadController.deleteLead);
 

@@ -7,6 +7,11 @@ const getLeads = asyncHandler(async (req, res) => {
   return success(res, leads);
 });
 
+const getLeadById = asyncHandler(async (req, res) => {
+  const lead = await leadService.getLeadById(req.params.id);
+  return success(res, lead);
+});
+
 const createLead = asyncHandler(async (req, res) => {
   const lead = await leadService.createLead(req.body, req.admin);
   return success(res, lead, 201);
@@ -22,4 +27,4 @@ const deleteLead = asyncHandler(async (req, res) => {
   return success(res, { deleted: true });
 });
 
-module.exports = { getLeads, createLead, updateLead, deleteLead };
+module.exports = { getLeads, getLeadById, createLead, updateLead, deleteLead };

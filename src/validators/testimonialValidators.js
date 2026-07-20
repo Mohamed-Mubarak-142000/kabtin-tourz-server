@@ -10,4 +10,10 @@ const createTestimonialSchema = z.object({
 
 const updateTestimonialSchema = createTestimonialSchema.partial();
 
-module.exports = { createTestimonialSchema, updateTestimonialSchema };
+const bookingFeedbackSchema = z.object({
+  leadId: z.string().regex(/^[a-f\d]{24}$/i, 'Invalid booking request'),
+  text: z.string().trim().min(3, 'Feedback is required').max(1000, 'Feedback is too long'),
+  rating: z.number().int().min(1).max(5),
+});
+
+module.exports = { createTestimonialSchema, updateTestimonialSchema, bookingFeedbackSchema };

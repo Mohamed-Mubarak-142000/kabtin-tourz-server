@@ -7,6 +7,7 @@ const testimonialSchema = new mongoose.Schema(
     rating: { type: Number, min: 1, max: 5 },
     source: { type: String, enum: ['facebook', 'google', 'other'], default: 'facebook' },
     avatar: { type: String },
+    lead: { type: mongoose.Schema.Types.ObjectId, ref: 'Lead', unique: true, sparse: true },
   },
   { timestamps: true }
 );

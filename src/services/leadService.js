@@ -12,6 +12,12 @@ async function listLeads(query = {}) {
   return paginate(Lead, {}, { createdAt: -1 }, query);
 }
 
+async function getLeadById(id) {
+  const lead = await Lead.findById(id).catch(() => null);
+  if (!lead) throw notFoundError();
+  return lead;
+}
+
 async function createLead(payload, admin) {
   const trip = await Trip.findOne({ _id: payload.tripId, ...(admin ? {} : { published: true }) });
   if (!trip) throw notFoundError('Trip not found or unavailable');
@@ -56,4 +62,4 @@ async function deleteLead(id) {
   return lead;
 }
 
-module.exports = { listLeads, createLead, updateLeadStatus, deleteLead };
+module.exports = { listLeads, getLeadById, createLead, updateLeadStatus, deleteLead };

@@ -12,6 +12,11 @@ const createTestimonial = asyncHandler(async (req, res) => {
   return success(res, testimonial, 201);
 });
 
+const createBookingFeedback = asyncHandler(async (req, res) => {
+  const testimonial = await testimonialService.createBookingFeedback(req.body);
+  return success(res, testimonial, 201);
+});
+
 const updateTestimonial = asyncHandler(async (req, res) => {
   const testimonial = await testimonialService.updateTestimonial(req.params.id, req.body);
   return success(res, testimonial);
@@ -22,4 +27,4 @@ const deleteTestimonial = asyncHandler(async (req, res) => {
   return success(res, { deleted: true });
 });
 
-module.exports = { getTestimonials, createTestimonial, updateTestimonial, deleteTestimonial };
+module.exports = { getTestimonials, createTestimonial, createBookingFeedback, updateTestimonial, deleteTestimonial };
