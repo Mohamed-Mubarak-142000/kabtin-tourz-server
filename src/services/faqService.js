@@ -1,4 +1,5 @@
 const Faq = require('../models/Faq');
+const { paginate } = require('../utils/pagination');
 
 function notFoundError(message = 'FAQ not found') {
   const err = new Error(message);
@@ -6,8 +7,8 @@ function notFoundError(message = 'FAQ not found') {
   return err;
 }
 
-async function listFaqs() {
-  return Faq.find().sort({ order: 1 });
+async function listFaqs(query = {}) {
+  return paginate(Faq, {}, { order: 1 }, query);
 }
 
 async function createFaq(payload) {

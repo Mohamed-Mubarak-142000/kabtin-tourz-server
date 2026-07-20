@@ -7,6 +7,7 @@ const { createTripSchema, updateTripSchema } = require('../validators/tripValida
 const router = express.Router();
 
 router.get('/', optionalAuth, tripController.getTrips);
+router.get('/id/:id', requireAuth, tripController.getTripById);
 router.get('/:slug', optionalAuth, tripController.getTripBySlug);
 router.post('/', requireAuth, validate(createTripSchema), tripController.createTrip);
 router.put('/:id', requireAuth, validate(updateTripSchema), tripController.updateTrip);

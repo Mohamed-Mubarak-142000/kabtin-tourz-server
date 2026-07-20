@@ -2,12 +2,21 @@ const mongoose = require('mongoose');
 const { slugify } = require('../utils/slugify');
 
 const CATEGORIES = ['hajj', 'umrah', 'flights', 'domestic', 'international', 'visa'];
+const TRIP_TYPES = ['religious', 'tourism'];
 
 const tripSchema = new mongoose.Schema(
   {
     title: { type: String, required: true, trim: true },
     slug: { type: String, unique: true, index: true },
     category: { type: String, enum: CATEGORIES, required: true },
+    tripType: {
+      type: String,
+      enum: TRIP_TYPES,
+      required: true,
+      default() {
+        return ['hajj', 'umrah'].includes(this.category) ? 'religious' : 'tourism';
+      },
+    },
     price: { type: Number, required: true },
     currency: { type: String, default: 'EGP' },
     duration: { type: String },
@@ -15,12 +24,11 @@ const tripSchema = new mongoose.Schema(
     includes: { type: [String], default: [] },
     images: { type: [String], default: [] },
     location: {
-      lat: { type: Number },
-      lng: { type: Number },
-      address: { type: String },
+      lat: { type: Number, min: -90, max: 90 },
+      lng: { type: Number, min: -180, max: 180 },
+      address: { type: String, trim: true },
     },
     description: { type: String },
-    featured: { type: Boolean, default: false },
     published: { type: Boolean, default: true },
   },
   { timestamps: true }

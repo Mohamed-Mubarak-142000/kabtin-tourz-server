@@ -3,7 +3,7 @@ const { success } = require('../utils/apiResponse');
 const faqService = require('../services/faqService');
 
 const getFaqs = asyncHandler(async (req, res) => {
-  const faqs = await faqService.listFaqs();
+  const faqs = await faqService.listFaqs(req.query);
   return success(res, faqs);
 });
 

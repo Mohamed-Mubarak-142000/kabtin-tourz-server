@@ -1,4 +1,5 @@
 const Branch = require('../models/Branch');
+const { paginate } = require('../utils/pagination');
 
 function notFoundError(message = 'Branch not found') {
   const err = new Error(message);
@@ -6,8 +7,8 @@ function notFoundError(message = 'Branch not found') {
   return err;
 }
 
-async function listBranches() {
-  return Branch.find().sort({ createdAt: -1 });
+async function listBranches(query = {}) {
+  return paginate(Branch, {}, { createdAt: -1 }, query);
 }
 
 async function createBranch(payload) {

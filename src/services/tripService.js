@@ -1,4 +1,5 @@
 const Trip = require('../models/Trip');
+const { paginate } = require('../utils/pagination');
 
 function notFoundError(message = 'Trip not found') {
   const err = new Error(message);
@@ -10,9 +11,37 @@ function notFoundError(message = 'Trip not found') {
 // published:true is forced regardless of any ?published= query param.
 // If authenticated, all trips are returned unless ?published=true|false is
 // explicitly passed.
-async function listTrips({ category, published }, admin) {
+function escapeRegex(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+async function listTrips({ category, tripType, published, search, page, limit }, admin) {
   const filter = {};
   if (category) filter.category = category;
+  if (tripType === 'religious') {
+    filter.$and = [{
+      $or: [
+        { tripType: 'religious' },
+        { tripType: { $exists: false }, category: { $in: ['hajj', 'umrah'] } },
+      ],
+    }];
+  } else if (tripType === 'tourism') {
+    filter.$and = [{
+      $or: [
+        { tripType: 'tourism' },
+        { tripType: { $exists: false }, category: { $nin: ['hajj', 'umrah'] } },
+      ],
+    }];
+  }
+  if (search && search.trim()) {
+    const pattern = new RegExp(escapeRegex(search.trim()), 'i');
+    filter.$or = [
+      { title: pattern },
+      { description: pattern },
+      { hotelInfo: pattern },
+      { 'location.address': pattern },
+    ];
+  }
 
   if (!admin) {
     filter.published = true;
@@ -22,7 +51,13 @@ async function listTrips({ category, published }, admin) {
     filter.published = false;
   }
 
-  return Trip.find(filter).sort({ createdAt: -1 });
+  return paginate(Trip, filter, { createdAt: -1 }, { page, limit });
+}
+
+async function getTripById(id) {
+  const trip = await Trip.findById(id).catch(() => null);
+  if (!trip) throw notFoundError();
+  return trip;
 }
 
 // Fetches a single trip by slug. When unauthenticated, only published
@@ -52,4 +87,4 @@ async function deleteTrip(id) {
   return trip;
 }
 
-module.exports = { listTrips, getTripBySlug, createTrip, updateTrip, deleteTrip };
+module.exports = { listTrips, getTripById, getTripBySlug, createTrip, updateTrip, deleteTrip };

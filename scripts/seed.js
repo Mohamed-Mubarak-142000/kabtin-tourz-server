@@ -175,7 +175,6 @@ async function seedTrips() {
       location: { lat: 21.4225, lng: 39.8262, address: 'مكة المكرمة - الحرم المكي' },
       description:
         'باقة حج متكاملة لمن يبحث عن أعلى مستوى من التنظيم والراحة، تشمل متابعة قبل السفر، إقامة مميزة، وتنقلات مريحة بين المشاعر المقدسة.',
-      featured: true,
       published: true,
     },
     {
@@ -198,7 +197,6 @@ async function seedTrips() {
       location: { lat: 21.4133, lng: 39.8933, address: 'منى - مكة المكرمة' },
       description:
         'برنامج حج اقتصادي يركز على الأساسيات المهمة: تنظيم واضح، مخيمات مرتبة، ومشرفين يساعدون الحجاج خطوة بخطوة.',
-      featured: false,
       published: true,
     },
     {
@@ -220,7 +218,6 @@ async function seedTrips() {
       location: { lat: 21.4225, lng: 39.8262, address: 'مكة المكرمة' },
       description:
         'باقة عمرة مناسبة للأفراد والعائلات بسعر متوازن وخدمات أساسية واضحة، مع متابعة للحجوزات حتى نهاية الرحلة.',
-      featured: true,
       published: true,
     },
     {
@@ -242,7 +239,6 @@ async function seedTrips() {
       location: { lat: 21.4225, lng: 39.8262, address: 'مكة المكرمة - المنطقة المركزية' },
       description:
         'تجربة عمرة فاخرة لمن يريد راحة أعلى وتفاصيل أكثر خصوصية، من اختيار الفندق حتى ترتيب الزيارات والتنقلات.',
-      featured: true,
       published: true,
     },
     {
@@ -264,7 +260,6 @@ async function seedTrips() {
       location: { lat: 21.4225, lng: 39.8262, address: 'مكة المكرمة والمدينة المنورة' },
       description:
         'برنامج مريح للعائلات يجمع بين أداء العمرة وتنظيم يناسب الأطفال وكبار السن، مع اهتمام بتفاصيل الغرف والتنقلات.',
-      featured: false,
       published: true,
     },
     {
@@ -285,7 +280,6 @@ async function seedTrips() {
       location: { lat: 30.1123, lng: 31.4000, address: 'مطار القاهرة الدولي' },
       description:
         'خدمة حجز تذاكر الطيران إلى جدة والمدينة المنورة بأفضل الخيارات المتاحة، مع متابعة تفاصيل الرحلة حتى إصدار التذكرة.',
-      featured: false,
       published: true,
     },
     {
@@ -306,7 +300,6 @@ async function seedTrips() {
       location: { lat: 27.9158, lng: 34.3299, address: 'شرم الشيخ - جنوب سيناء' },
       description:
         'عطلة داخلية قصيرة على البحر الأحمر تناسب العائلات والأزواج، مع منتجعات مريحة ومياه صافية وأنشطة اختيارية.',
-      featured: true,
       published: true,
     },
     {
@@ -328,7 +321,6 @@ async function seedTrips() {
       location: { lat: 41.0082, lng: 28.9784, address: 'إسطنبول وبورصة - تركيا' },
       description:
         'برنامج سياحي متكامل لاكتشاف إسطنبول وبورصة، يجمع بين المزارات التاريخية والطبيعة والأسواق بتنسيق مريح.',
-      featured: true,
       published: true,
     },
     {
@@ -350,7 +342,6 @@ async function seedTrips() {
       location: { lat: 30.0444, lng: 31.2357, address: 'القاهرة - خدمات التأشيرات' },
       description:
         'خدمة تجهيز ومراجعة ملف تأشيرة شنغن السياحية باهتمام بالتفاصيل المطلوبة، لتقليل الأخطاء وتسريع خطوات التقديم.',
-      featured: false,
       published: true,
     },
   ];

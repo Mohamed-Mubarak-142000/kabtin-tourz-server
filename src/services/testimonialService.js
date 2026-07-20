@@ -1,4 +1,5 @@
 const Testimonial = require('../models/Testimonial');
+const { paginate } = require('../utils/pagination');
 
 function notFoundError(message = 'Testimonial not found') {
   const err = new Error(message);
@@ -6,8 +7,8 @@ function notFoundError(message = 'Testimonial not found') {
   return err;
 }
 
-async function listTestimonials() {
-  return Testimonial.find().sort({ createdAt: -1 });
+async function listTestimonials(query = {}) {
+  return paginate(Testimonial, {}, { createdAt: -1 }, query);
 }
 
 async function createTestimonial(payload) {

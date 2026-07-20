@@ -3,7 +3,7 @@ const { success } = require('../utils/apiResponse');
 const branchService = require('../services/branchService');
 
 const getBranches = asyncHandler(async (req, res) => {
-  const branches = await branchService.listBranches();
+  const branches = await branchService.listBranches(req.query);
   return success(res, branches);
 });
 

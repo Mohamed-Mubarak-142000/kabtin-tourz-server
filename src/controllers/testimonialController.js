@@ -3,7 +3,7 @@ const { success } = require('../utils/apiResponse');
 const testimonialService = require('../services/testimonialService');
 
 const getTestimonials = asyncHandler(async (req, res) => {
-  const testimonials = await testimonialService.listTestimonials();
+  const testimonials = await testimonialService.listTestimonials(req.query);
   return success(res, testimonials);
 });
 

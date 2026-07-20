@@ -3,9 +3,14 @@ const { success } = require('../utils/apiResponse');
 const tripService = require('../services/tripService');
 
 const getTrips = asyncHandler(async (req, res) => {
-  const { category, published } = req.query;
-  const trips = await tripService.listTrips({ category, published }, req.admin);
+  const { category, tripType, published, search, page, limit } = req.query;
+  const trips = await tripService.listTrips({ category, tripType, published, search, page, limit }, req.admin);
   return success(res, trips);
+});
+
+const getTripById = asyncHandler(async (req, res) => {
+  const trip = await tripService.getTripById(req.params.id);
+  return success(res, trip);
 });
 
 const getTripBySlug = asyncHandler(async (req, res) => {
@@ -28,4 +33,4 @@ const deleteTrip = asyncHandler(async (req, res) => {
   return success(res, { deleted: true });
 });
 
-module.exports = { getTrips, getTripBySlug, createTrip, updateTrip, deleteTrip };
+module.exports = { getTrips, getTripById, getTripBySlug, createTrip, updateTrip, deleteTrip };
