@@ -27,6 +27,7 @@ const env = {
     .filter(Boolean),
   ADMIN_USERNAME: required('ADMIN_USERNAME', 'admin'),
   ADMIN_PASSWORD: required('ADMIN_PASSWORD', 'ChangeMe123!'),
+  PUBLIC_SITE_URL: required('PUBLIC_SITE_URL', 'https://kabtin-tourz-client.vercel.app'),
 };
 
 if (env.NODE_ENV !== 'test') {

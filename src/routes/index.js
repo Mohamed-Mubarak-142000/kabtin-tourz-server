@@ -8,6 +8,7 @@ const faqRoutes = require('./faqRoutes');
 const leadRoutes = require('./leadRoutes');
 const settingsRoutes = require('./settingsRoutes');
 const uploadRoutes = require('./uploadRoutes');
+const qrRoutes = require('./qrRoutes');
 
 const router = express.Router();
 
@@ -19,5 +20,6 @@ router.use('/faqs', faqRoutes);
 router.use('/leads', leadRoutes);
 router.use('/settings', settingsRoutes);
 router.use('/upload', uploadRoutes);
+router.use('/qr-codes', qrRoutes);
 
 module.exports = router;
